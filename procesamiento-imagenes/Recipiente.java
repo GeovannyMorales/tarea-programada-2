@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Recipiente here.
+ * Clase que corresponde al recipiente
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Morales, Maria Vargas, José Rojas 
+ * @version 1.0
  */
 public class Recipiente
 {

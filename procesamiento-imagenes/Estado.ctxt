@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Estado
+comment0.text=\r\n\ Clase\ que\ corresponde\ al\ estado\ de\ los\ recipientes\r\n\ \r\n\ @author\ Bryan\ Morales,\ Maria\ Vargas,\ Jos\u00E9\ Rojas\ \r\n\ @version\ 1.0\r\n
+comment1.params=recipientes
+comment1.target=Estado(Recipiente[])
+comment1.text=\r\n\ Constructor\r\n
+comment2.params=
+comment2.target=boolean\ estaSolucionado()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=Estado\ copiarEstado()
+comment4.text=\r\n\ Crear\ una\ copia\ de\ estado\ de\ recipientes\ actual.\r\n\ crea\ un\ nuevo\ arreglo\ de\ recipientes\ y\ recorre\ cada\ recipiente\ para\ copiar\ las\ piezas\r\n\ @return\ copiaEstado,\ un\ arreglo\ de\ la\ copia\ del\ estado\ original\r\n
+comment5.params=o\ d
+comment5.target=boolean\ moverPieza(int,\ int)
+comment5.text=\r\n\ Mover\ una\ pieza\ a\ otro\ recipiente\r\n\ @param\ int\ o,\ el\ recipiente\ origen\ de\ la\ pieza\ a\ mover\r\n\ @param\ int\ d,\ el\ recipiente\ destino\ de\ la\ pieza\ a\ mover\r\n\ @return\ true,\ si\ el\ movimiento\ es\ valido.\r\n\ @return\ false,\ si\ el\ movimiento\ no\ se\ realiza.\r\n
+comment6.params=
+comment6.target=Recipiente[]\ getRecipientes()
+comment7.params=
+comment7.target=int\ getCRecipientes()
+comment8.params=recipientes
+comment8.target=void\ setRecipientes(Recipiente[])
+comment9.params=cRecipientes
+comment9.target=void\ setCRecipientes(int)
+numComments=10
