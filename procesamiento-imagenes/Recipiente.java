@@ -1,0 +1,133 @@
+
+/**
+ * Write a description of class Recipiente here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Recipiente
+{
+    private Pieza piezas[];
+    private int cPiezas; //cantidad piezas actuales
+    private int capacidad;
+
+    /**
+     * Metodo constructor
+     */
+    public Recipiente(int capacidad){
+        this.piezas = new Pieza[capacidad];
+        this.cPiezas = 0;
+        this.capacidad = capacidad;
+    }
+
+    /**
+     * Metodo para agregar una pieza al recipiente, void.
+     * @param pieza, pieza que se va agregar.
+     */
+    public void agregarPieza(Pieza pieza){
+        if(cPiezas < capacidad){
+            piezas[cPiezas] = pieza;
+
+            cPiezas += 1;            
+        }
+    }
+
+    /**
+     * Sacar una pieza del recipiente, actualizar las piezas del recipiente
+     * @return pieza superior
+     */
+    public Pieza sacarPieza(){
+        
+        if(cPiezas > 0){
+            Pieza temp = piezas[cPiezas-1];// guardar la pieza superior;
+            piezas[cPiezas-1] = null; //sacar del recipiente la pieza
+            cPiezas--; 
+            return temp;
+        } else {
+            return null;
+        }
+        
+    }
+    
+    
+    /**
+     * verificar que el recipiente esté vacio
+     * @return true si está vacio
+     * @return false si contiene una pieza.
+     */
+    public boolean estaVacio(){
+        return cPiezas == 0;
+    }
+    
+    
+    /**
+     * verificar si el recipiente está lleno
+     * @return true, si el recipiente llego a su capacidad maxima de piezas
+     * @return false si faltan piezas
+     */
+    public boolean estaLleno(){
+        return cPiezas == capacidad;
+    }
+    
+    
+    /**
+     * Obtener la pieza que se encuentre en la posicion superior
+     * @return la pieza superior
+     * @return null si no hay pieza en el recipiente
+     */
+    public Pieza getPiezaSuperior(){
+        if(!estaVacio()){
+            return piezas[cPiezas-1];
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * verificar si el recipiente ya está resuelto
+     * @return true, si en la base no hay piezas, verifica que el recipiente está vacio(cuenta como resuelto)
+     * @return false, si la siguiente ficha es diferente a la pieza base
+     * @return true, si todas las fichas son iguales.
+     */
+    public boolean estaResuelto(){
+       if(estaVacio()){return true;} // recipiente vacío
+       
+       Pieza piezaBase = piezas[0];
+
+       for(int i = 0; i < cPiezas - 1 ; i++){
+           if(!piezaBase.esIgual(piezas[i+1])){
+               return false;    
+           }
+       } 
+       return true;
+    }
+
+    
+   public String toString() {
+       
+       String fichas = "";
+       for(int i = 0; i < cPiezas; i++){
+           fichas += piezas[i] + " ";
+       }
+
+       return "Capacidad: " + capacidad + ", cantidad de piezas: " + cPiezas + ", Piezas: " + fichas;
+       
+       
+   }
+    
+    
+    //getters
+    public Pieza[] getPiezas(){return piezas;}
+
+    public int getCPiezas(){return cPiezas;}
+
+    public int getCapacidad(){return capacidad;}
+
+    //setters
+    public void setPiezas(Pieza[] piezas){ this.piezas = piezas;}
+
+    public void setCPiezas(int cPiezas){this.cPiezas = cPiezas;}
+
+    public void setCapacidad(int capacidad){this.capacidad = capacidad;}
+
+}
