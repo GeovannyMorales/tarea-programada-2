@@ -1,4 +1,3 @@
-
 /**
  * Clase que corresponde a la pieza
  * 
@@ -46,6 +45,4 @@ public class Pieza
    public void setColor(int color){this.color = color;}
    public void setTamaño(int tamaño){this.tamaño = tamaño;;}
    public void setForma(boolean forma){this.forma = forma;}
-   
-   
-}
+      }

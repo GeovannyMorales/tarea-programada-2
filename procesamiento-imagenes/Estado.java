@@ -1,4 +1,3 @@
-
 /**
  * Clase que corresponde al estado de los recipientes
  * 

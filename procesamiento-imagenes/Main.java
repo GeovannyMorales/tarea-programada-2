@@ -14,8 +14,7 @@ public class Main {
 
         int[][] matriz = imagen.getMatriz();
 
-        Reconocedor reconocedor =
-            new Reconocedor(matriz);
+        Reconocedor reconocedor = new Reconocedor(matriz);
 
         Estado estado =
             reconocedor.construirEstado();
@@ -90,3 +89,4 @@ public class Main {
         }
     }
 }
+

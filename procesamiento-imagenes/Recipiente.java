@@ -1,4 +1,3 @@
-
 /**
  * Clase que corresponde al recipiente
  * 
@@ -124,3 +123,4 @@ public class Recipiente
     public void setCapacidad(int capacidad){this.capacidad = capacidad;}
 
 }
+
