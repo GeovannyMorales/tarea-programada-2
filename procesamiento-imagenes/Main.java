@@ -1,53 +1,92 @@
-
-/**
- * Write a description of class Main here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
 public class Main {
+
     public static void main(String[] args) {
 
-        // Crear piezas
-        Pieza rojo = new Pieza(-65536, false, 10);
-        Pieza azul = new Pieza(-16776861, false, 10);
+        String nombreImagen = "dibujo.gif";
 
-        // recipientes con capacidad 2
-        Recipiente r1 = new Recipiente(2);
-        Recipiente r2 = new Recipiente(2);
-        Recipiente r3 = new Recipiente(2);
+        if (args.length > 0) {
+            nombreImagen = args[0];
+        }
 
-        // Llenar recipientes
-        // Recipiente 1: [rojo, azul]
-        r1.agregarPieza(rojo);
-        r1.agregarPieza(azul);
+        System.out.println("Imagen cargada: " + nombreImagen);
 
-        // Recipiente 2: [azul, rojo]
-        r2.agregarPieza(azul);
-        r2.agregarPieza(rojo);
+        Imagen imagen = new Imagen(nombreImagen);
 
-        // Recipiente 3: vacío
+        int[][] matriz = imagen.getMatriz();
 
-        // Crear estado
-        Recipiente[] recipientes = {r1, r2, r3};
-        Estado estado = new Estado(recipientes);
+        Reconocedor reconocedor =
+            new Reconocedor(matriz);
 
-        // Imprimir estado inicial
-        System.out.println("ESTADO INICIAL:");
-        System.out.println(estado.toString());
+        Estado estado =
+            reconocedor.construirEstado();
 
-        // Resolver
-        Solucionador agente = new Solucionador(estado);
-        if(agente.solucionar()){
-            System.out.println("SOLUCION ENCONTRADA:");
-            for(int i = 0; i < agente.getCMovimientos(); i++){
-                System.out.println(agente.getMovimientos()[i]);
+        if (estado == null) {
+            System.out.println(
+                "No se pudo construir el estado."
+            );
+            return;
+        }
+
+        System.out.println(
+            "\n========================"
+        );
+        System.out.println(
+            "ESTADO INICIAL"
+        );
+        System.out.println(
+            "========================"
+        );
+
+        System.out.println(estado);
+
+        Solucionador agente =
+            new Solucionador(estado);
+
+        System.out.println(
+            "\nBuscando solucion..."
+        );
+
+        if (agente.solucionar()) {
+
+            System.out.println(
+                "\n========================"
+            );
+            System.out.println(
+                "SOLUCION ENCONTRADA"
+            );
+            System.out.println(
+                "========================\n"
+            );
+
+            for (int i = 0;
+                 i < agente.getCMovimientos();
+                 i++) {
+
+                System.out.println(
+                    (i + 1) + ". "
+                    + agente.getMovimientos()[i]
+                );
             }
-            System.out.println("ESTADO FINAL:");
-            System.out.println(estado.toString());
+
+            System.out.println(
+                "\n========================"
+            );
+            System.out.println(
+                "ESTADO FINAL"
+            );
+            System.out.println(
+                "========================"
+            );
+
+            System.out.println(
+                agente.getEstadoFinal()
+            );
+
         } else {
-            System.out.println("NO TIENE SOLUCION");
+
+            System.out.println(
+                "\nNO TIENE SOLUCION"
+            );
         }
     }
 }
