@@ -22,8 +22,14 @@ public class Estado
     public boolean estaSolucionado(){
 
         for(int i = 0; i < this.recipientes.length; i++){
-            if(!this.recipientes[i].estaResuelto()){
-                return false;
+            if(!recipientes[i].estaVacio()){
+                if(!recipientes[i].estaLleno()){
+                    return false;
+                }
+                
+                if(!this.recipientes[i].estaResuelto()){
+                    return false;
+                }
             }
         }
 
@@ -59,7 +65,6 @@ public class Estado
         return copiaEstado;
     }
 
-    
     /**
      * Mover una pieza a otro recipiente
      * @param int o, el recipiente origen de la pieza a mover

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Solucionador
+comment0.text=\r\n\ Clase\ que\ implementa\ solucion\ \r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=estadoInicial
+comment1.target=Solucionador(Estado)
+comment2.params=
+comment2.target=boolean\ solucionar()
+comment3.params=estado
+comment3.target=boolean\ yaVisitado(java.lang.String)
+comment3.text=\r\n\ Verificar\ que\ ya\ se\ visito\ un\ estado\r\n\ @return\ true,\ si\ ya\ se\ visito\ el\ estado\r\n\ @return\ false,\ si\ no\ se\ ha\ visitado\r\n
+comment4.params=
+comment4.target=java.lang.String[]\ getMovimientos()
+comment5.params=
+comment5.target=int\ getCMovimientos()
+comment6.params=movimientos
+comment6.target=void\ setMovimientos(java.lang.String[])
+comment7.params=cMovimientos
+comment7.target=void\ setCMovimientos(int)
+numComments=8
