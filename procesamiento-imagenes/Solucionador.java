@@ -21,34 +21,37 @@ public class Solucionador
         this.cVisitados = 0;
     }    
 
-    public boolean solucionar(){
-        if(estadoActual.estaSolucionado()){
+    public boolean solucionar() {
+        return backtrack(estadoActual);
+    }
+
+    private boolean backtrack(Estado estado) {
+        if (estado.estaSolucionado()) {
+            estadoActual = estado;
             return true;
         }
 
-        if(yaVisitado(estadoActual.toString())){
-            return false;
-        }
+        String llave = estado.toString();
+        if (yaVisitado(llave)) return false;
 
-        visitados[cVisitados] = estadoActual.toString();
+        visitados[cVisitados] = llave;
         cVisitados++;
 
-        for(int i = 0; i < estadoActual.getCRecipientes(); i++){
-            
-            for(int j = 0; j < estadoActual.getCRecipientes(); j++){
-                
-                if(i != j){
-                    
-                    if(estadoActual.moverPieza(i,j)){
-                        movimientos[cMovimientos] = "Mover pieza de recipiente " + (i+1) + " a " + (j+1);
-                        cMovimientos++;
-                        if(solucionar()){
-                            return true;
-                        }
-                        cMovimientos--;
-                        estadoActual.moverPieza(j,i); //retroceder movimiento
-                    
-                    }
+        int n = estado.getCRecipientes();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) continue;
+
+                Estado estadoCopia = estado.copiarEstado();
+
+                if (estadoCopia.moverPieza(i, j)) {
+                    movimientos[cMovimientos] = "Mover pieza de recipiente " + (i + 1) + " al recipiente " + (j + 1);
+                    cMovimientos++;
+
+                    if (backtrack(estadoCopia)) return true;
+
+                    cMovimientos--;
                 }
             }
         }
@@ -56,30 +59,21 @@ public class Solucionador
         return false;
     }
 
-    /**
-     * Verificar que ya se visito un estado
-     * @return true, si ya se visito el estado
-     * @return false, si no se ha visitado
-     */
-    private boolean yaVisitado(String estado){
-        for(int i = 0; i < cVisitados; i++){
-            if(visitados[i].equalsIgnoreCase(estado)){
-                return true;
-            }
+    private boolean yaVisitado(String estado) {
+        for (int i = 0; i < cVisitados; i++) {
+            if (visitados[i].equals(estado)) return true;
         }
         return false;
     }
     
     //getters
-    public String[] getMovimientos(){return movimientos;}
-    public int getCMovimientos(){return cMovimientos;}
+
+    public String[] getMovimientos() { return movimientos; }
+    public int getCMovimientos() { return cMovimientos; }
+    public Estado getEstadoFinal() { return estadoActual; }
     
     //setters
-    public void setMovimientos(String[] movimientos){
-        this.movimientos = movimientos;
-    }
-    
-    public void setCMovimientos(int cMovimientos){
-        this.movimientos = movimientos;
-    }
+
+    public void setMovimientos(String[] movimientos) { this.movimientos = movimientos; }
+    public void setCMovimientos(int cMovimientos) { this.cMovimientos = cMovimientos; }
 }
