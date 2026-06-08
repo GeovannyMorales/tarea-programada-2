@@ -5,8 +5,7 @@
  * @author Bryan Morales, Maria Vargas, José Rojas 
  * @version 1.0
  */
-public class Estado
-{
+public class Estado {
     private Recipiente[] recipientes;
     private int cRecipientes; // cantidad recipiente
 
@@ -36,33 +35,23 @@ public class Estado
         return true;
     }
 
-    public String toString() {
-        String recipientesTxt = "";
-        for(int i = 0; i < cRecipientes; i++){
-            recipientesTxt += "Recipiente:" + (i+1) +" " + recipientes[i] + "\n";
-        }
-
-        return "Cantidad de recipientes: " + cRecipientes + ", recipientes:"+ recipientesTxt;
-
-    }
-
     /**
      * Crear una copia de estado de recipientes actual.
      * crea un nuevo arreglo de recipientes y recorre cada recipiente para copiar las piezas
      * @return copiaEstado, un arreglo de la copia del estado original
      */
-    public Estado copiarEstado(){
-        Recipiente[] copiaRecipientes = new Recipiente[cRecipientes]; // crear arreglo de recipientes
-
-        for(int i = 0; i < copiaRecipientes.length; i++){
-            Recipiente nuevoRecipiente = new Recipiente(recipientes[i].getCapacidad()); // crear nuevo recipiente copia
-            for(int j = 0; j < recipientes[i].getCPiezas(); j++){
-                nuevoRecipiente.agregarPieza(recipientes[i].getPiezas()[j]); //agregar piezas originales en cada recipiente copia
+    public Estado copiarEstado() {
+        Recipiente[] copiaRecipientes = new Recipiente[cRecipientes];
+        for (int i = 0; i < cRecipientes; i++) {
+            Recipiente recipiente = new Recipiente(recipientes[i].getCapacidad());
+            Pieza[] originales = recipientes[i].getPiezas();
+            for (int j = 0; j < recipientes[i].getCPiezas(); j++) {
+                Pieza pieza = originales[j];
+                recipiente.agregarPieza(new Pieza(pieza.getColor(), pieza.getForma(), pieza.getTamaño()));
             }
-            copiaRecipientes[i] = nuevoRecipiente; //referenciar la copia al recipiente original
+            copiaRecipientes[i] = recipiente;
         }
-        Estado copiaEstado = new Estado(copiaRecipientes); // crear la copia de los recipientes
-        return copiaEstado;
+        return new Estado(copiaRecipientes);
     }
 
     /**
@@ -72,15 +61,23 @@ public class Estado
      * @return true, si el movimiento es valido.
      * @return false, si el movimiento no se realiza.
      */
-    public boolean moverPieza(int o,int d){
-        //comparar que el recipiente destino no esté lleno y el origen no esté vacio, que el recipiente destino este vacio 
-        // o la pieza superior sea igual a la del destino
-        if(!recipientes[o].estaVacio() && !recipientes[d].estaLleno() &&
-        (recipientes[d].estaVacio() || recipientes[o].getPiezaSuperior().esIgual(recipientes[d].getPiezaSuperior()))){
+    public boolean moverPieza(int o, int d) {
+        if (!recipientes[o].estaVacio() &&
+            !recipientes[d].estaLleno() &&
+            (recipientes[d].estaVacio() ||
+             recipientes[o].getPiezaSuperior().esIgual(recipientes[d].getPiezaSuperior()))) {
             recipientes[d].agregarPieza(recipientes[o].sacarPieza());
             return true;
         }
         return false;
+    }
+    
+    public String toString() {
+        String txt = "";
+        for (int i = 0; i < cRecipientes; i++) {
+            txt += "Recipiente " + (i + 1) + ": " + recipientes[i] + "\n";
+        }
+        return txt;
     }
 
     //setters
@@ -91,6 +88,6 @@ public class Estado
     //getters
     public void setRecipientes(Recipiente[] recipientes){this.recipientes = recipientes;}
 
-    public void setCRecipientes(int cRecipientes){this.recipientes = recipientes;}
+    public void setCRecipientes(int cRecipientes){this.cRecipientes = cRecipientes;}
 
 }
