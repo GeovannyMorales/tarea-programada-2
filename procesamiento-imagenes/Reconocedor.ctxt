@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Reconocedor
+comment1.params=pixeles
+comment1.target=Reconocedor(int[][])
+comment2.params=
+comment2.target=Estado\ construirEstado()
+comment3.params=
+comment3.target=int[]\ detectarRecipientes()
+comment4.params=inicios
+comment4.target=int\ contarRecipientes(int[])
+comment5.params=xInicio\ xFin
+comment5.target=Pieza[]\ extraerPiezas(int,\ int)
+comment6.params=xInicio
+comment6.target=int\ detectarColorBorde(int)
+comment7.params=xInicio\ xFin\ colorBorde
+comment7.target=int\ detectarFondoRecipiente(int,\ int,\ int)
+comment8.params=piezas
+comment8.target=int\ contarPiezas(Pieza[])
+numComments=9
