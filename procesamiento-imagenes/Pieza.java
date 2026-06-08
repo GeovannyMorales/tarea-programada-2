@@ -25,14 +25,16 @@ public class Pieza
     * @return true, si tienen el mismo color, forma y tamaño;
     * @return false, si si al menos un atributo es distinto del otro.
     */
-   public boolean esIgual(Pieza sPieza){
-       return this.color == sPieza.getColor() && this.tamaño == sPieza.getTamaño() && this.forma == sPieza.getForma();
+   public boolean esIgual(Pieza pieza) {
+        return this.color == pieza.getColor() &&
+               this.tamaño == pieza.getTamaño() &&
+               this.forma == pieza.getForma();
     }
    
 
    public String toString() {
        String nombreForma = forma ? "circulo" : "cuadrado";
-       return "Color: " + color + ", Tamaño: " + tamaño + ", Forma: " + forma;
+       return "Color: " + color + ", Tamaño: " + tamaño + ", Forma: " + nombreForma;
    }
     
    //getters
