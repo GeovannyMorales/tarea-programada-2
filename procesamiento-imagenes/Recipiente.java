@@ -28,7 +28,7 @@ public class Recipiente
         if(cPiezas < capacidad){
             piezas[cPiezas] = pieza;
 
-            cPiezas += 1;            
+            cPiezas ++;           
         }
     }
 
@@ -36,17 +36,14 @@ public class Recipiente
      * Sacar una pieza del recipiente, actualizar las piezas del recipiente
      * @return pieza superior
      */
-    public Pieza sacarPieza(){
-        
-        if(cPiezas > 0){
-            Pieza temp = piezas[cPiezas-1];// guardar la pieza superior;
-            piezas[cPiezas-1] = null; //sacar del recipiente la pieza
-            cPiezas--; 
-            return temp;
-        } else {
-            return null;
+    public Pieza sacarPieza() {
+        if (cPiezas > 0) {
+            Pieza piezaTemp = piezas[cPiezas - 1];
+            piezas[cPiezas - 1] = null;
+            cPiezas--;
+            return piezaTemp;
         }
-        
+        return null;
     }
     
     
@@ -78,9 +75,9 @@ public class Recipiente
     public Pieza getPiezaSuperior(){
         if(!estaVacio()){
             return piezas[cPiezas-1];
-        }else{
-            return null;
         }
+            return null;
+        
     }
     
     /**
@@ -89,31 +86,27 @@ public class Recipiente
      * @return false, si la siguiente ficha es diferente a la pieza base
      * @return true, si todas las fichas son iguales.
      */
-    public boolean estaResuelto(){
-       if(estaVacio()){return true;} // recipiente vacío
-       
-       Pieza piezaBase = piezas[0];
-
-       for(int i = 0; i < cPiezas - 1 ; i++){
-           if(!piezaBase.esIgual(piezas[i+1])){
-               return false;    
-           }
-       } 
-       return true;
+    public boolean estaResuelto() {
+        if (estaVacio()) return true;
+        Pieza base = piezas[0];
+        for (int i = 1; i < cPiezas; i++) {
+            if (!base.esIgual(piezas[i])) return false;
+        }
+        return true;
     }
 
     
    public String toString() {
        
-       String fichas = "";
-       for(int i = 0; i < cPiezas; i++){
-           fichas += piezas[i] + " ";
-       }
-
-       return "Capacidad: " + capacidad + ", cantidad de piezas: " + cPiezas + ", Piezas: " + fichas;
-       
-       
-   }
+        String contenido = "";
+        for (int i = 0; i < cPiezas; i++) {
+            contenido += piezas[i] + " | ";
+            
+            
+        }
+        
+        return "Capacidad: " + capacidad + ", Piezas: " + cPiezas + ", Contenido: [" + contenido + "]";
+    }
     
     
     //getters
